@@ -25,4 +25,4 @@ jobs:
         run: zip -j pos-tech-diner-auth-function.zip ./lambda.js
 
       - name: Deploy to AWS Lambda
-      - run: aws lambda update-function-code --function-name=pos-tech-diner-auth-function --zip-file=fileb://pos-tech-diner-auth-functio.zip
+        run: aws lambda update-function-code --function-name=pos-tech-diner-auth-function --zip-file=fileb://pos-tech-diner-auth-functio.zip
