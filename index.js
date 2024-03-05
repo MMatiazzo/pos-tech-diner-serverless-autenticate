@@ -1,6 +1,6 @@
 
 // Modules, e.g. Webpack:
-const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
+import AmazonCognitoIdentity from 'amazon-cognito-identity-js';
 
 export const handler = async (event) => {
   var poolData = {
