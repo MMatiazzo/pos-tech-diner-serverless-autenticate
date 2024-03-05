@@ -1,6 +1,6 @@
 
 // Modules, e.g. Webpack:
-var AmazonCognitoIdentity = require('amazon-cognito-identity-js');
+import AmazonCognitoIdentity from 'amazon-cognito-identity-js';
 
 export const handler = async (event) => {
   var poolData = {
@@ -9,14 +9,14 @@ export const handler = async (event) => {
   };
 
   var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
-  
+
   var attributeList = [];
-  
+
   var dataEmail = {
     Name: 'email',
     Value: 'email@mydomain.com',
   };
-  
+
   var dataCpf = {
     Name: 'CPF',
     Value: '04411915090',
@@ -25,11 +25,11 @@ export const handler = async (event) => {
   var attributeCpf = new AmazonCognitoIdentity.CognitoUserAttribute(
     dataCpf
   );
-  
+
   attributeList.push(attributeEmail);
   attributeList.push(attributeCpf);
-  
-  userPool.signUp('usernameTest', 'b{XR{3yfk+=p)^BJ', attributeList, null, function(
+
+  userPool.signUp('usernameTest', 'b{XR{3yfk+=p)^BJ', attributeList, null, function (
     err,
     result
   ) {
@@ -40,5 +40,5 @@ export const handler = async (event) => {
     var cognitoUser = result.user;
     console.log('user name is ' + cognitoUser.getUsername());
   });
-  
+
 };
