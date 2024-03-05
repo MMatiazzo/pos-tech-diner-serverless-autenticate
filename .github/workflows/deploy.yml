@@ -22,7 +22,7 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
 
       - name: Zip files
-        run: zip -j pos-tech-diner-auth-function.zip ./lambda.js
+        run: zip -j pos-tech-diner-authentication-function.zip ./lambda.js
 
       - name: Deploy to AWS Lambda
-        run: aws lambda update-function-code --function-name=pos-tech-diner-auth-function --zip-file=fileb://pos-tech-diner-auth-function.zip
+        run: aws lambda update-function-code --function-name=pos-tech-diner-authentication-function --zip-file=fileb://pos-tech-diner-authentication-function.zip
