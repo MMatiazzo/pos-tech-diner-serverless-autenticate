@@ -3,7 +3,8 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "amazon-cognito-identity-js": "^6.3.7"
+    "amazon-cognito-identity-js": "^6.3.7",
+    "pg": "^8.11.3"
   },
   "name": "pos-tech-diner-serverless-autenticate",
   "version": "1.0.0",
