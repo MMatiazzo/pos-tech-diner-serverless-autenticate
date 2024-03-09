@@ -6,13 +6,16 @@ import axios from 'axios';
 
 export const handler = async (event) => {
   console.log('event', event)
-  console.log('cpf', event.cpf, 'password', event.password)
+  const body = JSON.parse(event.body);
+  console.log('body', body)
+  const { cpf, password } = body;
+  console.log('cpf', cpf, 'password', password)
 
   // Retrieve username
   const client = new pg.Client({ connectionString: "postgresql://postgres_username:postgres_password@rds-pos-tech-diner.cpiuqcs2ov56.us-east-1.rds.amazonaws.com:5432/postechdinerdb" });
   await client.connect();
 
-  const res = await client.query('SELECT nome FROM clientes WHERE cpf=$1', [event.cpf])
+  const res = await client.query('SELECT nome FROM clientes WHERE cpf=$1', [cpf])
   console.log('res', res)
   await client.end();
   const username = res.rows[0].nome;
@@ -35,7 +38,7 @@ export const handler = async (event) => {
     "ClientId": "278fmimfp7pl48hs52jnctihlg",
     "AuthParameters": {
       "USERNAME": username,
-      "PASSWORD": event.password
+      "PASSWORD": password
     }
   }, {
     headers: {
