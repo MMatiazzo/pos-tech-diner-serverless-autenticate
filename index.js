@@ -12,10 +12,10 @@ export const handler = async (event) => {
   const client = new pg.Client({ connectionString: "postgresql://postgres_username:postgres_password@rds-pos-tech-diner.cpiuqcs2ov56.us-east-1.rds.amazonaws.com:5432/postechdinerdb" });
   await client.connect();
 
-  const res = await client.query('SELECT name FROM clientes WHERE cpf=$1', [event.cpf])
+  const res = await client.query('SELECT nome FROM clientes WHERE cpf=$1', [event.cpf])
   console.log('res', res)
   await client.end();
-  const username = res.rows[0].name;
+  const username = res.rows[0].nome;
   console.log('username', username)
 
   // Authenticate with Cognito
