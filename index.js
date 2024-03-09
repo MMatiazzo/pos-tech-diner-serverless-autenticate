@@ -12,6 +12,8 @@ export const handler = async (event) => {
   console.log(res)
   await client.end()
 
+  return res;
+
   // var poolData = {
   //   UserPoolId: '', // Your user pool id here
   //   ClientId: '', // Your client id here
