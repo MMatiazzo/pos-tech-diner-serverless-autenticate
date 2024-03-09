@@ -4,6 +4,7 @@
   },
   "dependencies": {
     "amazon-cognito-identity-js": "^6.3.7",
+    "axios": "^1.6.7",
     "pg": "^8.11.3"
   },
   "name": "pos-tech-diner-serverless-autenticate",
