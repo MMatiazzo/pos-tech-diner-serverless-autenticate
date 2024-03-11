@@ -6,7 +6,9 @@ import axios from 'axios';
 
 export const handler = async (event) => {
   console.log('event', event)
-  const { cpf, password } = event;
+  const body = JSON.parse(event.body);
+  console.log('body', body)
+  const { cpf, password } = body;
   console.log('cpf', cpf, 'password', password)
 
   // Retrieve username
