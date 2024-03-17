@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - master
+
+env:
+  POSTGRES_CONNECTION_STRING: ${{ secrets.POSTGRES_CONNECTION_STRING }}
+  COGNITO_CLIENT_ID: ${{ secrets.COGNITO_CLIENT_ID }}
+
 jobs:
   deploy:
     name: Push image
@@ -27,8 +32,16 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ vars.AWS_REGION }}
 
+      - name: Inject secrets
+        uses: cschleiden/replace-tokens@v1
+        with:
+          files: '["*.env"]'
+        env:
+          POSTGRES_CONNECTION_STRING: ${{ env.POSTGRES_CONNECTION_STRING }}
+          COGNITO_CLIENT_ID: ${{ env.COGNITO_CLIENT_ID }}
+
       - name: Zip files
-        run: zip -r pos-tech-diner-authentication-function.zip index.js node_modules package.json package-lock.json
+        run: zip -r pos-tech-diner-authentication-function.zip index.js .env node_modules package.json package-lock.json
 
       - name: Deploy to AWS Lambda
         run: aws lambda update-function-code --function-name=pos-tech-diner-authentication-function --zip-file=fileb://pos-tech-diner-authentication-function.zip
