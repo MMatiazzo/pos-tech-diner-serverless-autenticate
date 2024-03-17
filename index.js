@@ -4,6 +4,8 @@ import axios from 'axios';
 import 'dotenv/config';
 import pg from 'pg';
 
+console.log(process.env)
+
 export const handler = async (event) => {
 
   // Authenticate with Cognito
