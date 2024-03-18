@@ -19,7 +19,7 @@ export const handler = async (event) => {
     }
   });
 
-  console.log('event', event)
+  console.log('event - deploy', event)
   const { cpf, password, signup } = event;
   console.log('cpf', cpf, 'password', password, 'signup', signup);
 
